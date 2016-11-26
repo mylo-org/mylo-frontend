@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>MyLo - Your focal point for life on the Internet</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dash.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/dash.js"></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="menu">
+        <div id="centerMenu">
+          {{#each dashboards}}
+            <div class="dashIcon" data-dash= {{dash_number}}>
+              <img src="{{icon}}" class="dashImage" />
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div id="dashes">
+        {{#each dashboards}}
+          <div class="dash" style="background: url(./assets/dash_backgrounds/{{background}}); background-size: cover; order: {{location}};">
+            {{#each this.widgets}}
+              <div class="widget" data-widget-name="{{name}}" data-widget-service="{{service}}" style="order: {{location}}"></div>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </body>
+
+</html>

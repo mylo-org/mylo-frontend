@@ -1,0 +1,54 @@
+@import './mixins/complete.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+#main {
+  @include complete();
+  #loginBox {
+    display: flex;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 10pt;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: auto;
+    box-shadow: 0.2vw 1vh 200pt 0px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    #header {
+      flex: 0 1 auto;
+      min-height: 10vh;
+      display: flex;
+      margin: auto;
+      width: 40vh;
+      border-radius: 10pt 10pt 0pt 0pt;
+      // max-height: 
+      flex-direction: column;
+      align-items: center;
+      span {
+        margin: auto;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        display: flex;
+        font-size: 1.7em;
+        padding: 2vw;
+        flex: 1 1 auto;
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+    }
+    #body {
+      width: 40vh;
+      flex: 1 0 auto;
+      // border: 1px solid red;
+      margin: auto;
+      border-radius: 0pt 0pt 10pt 10pt;
+      display: flex;
+      flex-direction: column;
+      #logins {
+        display: flex;
+        flex: 1 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-radius: 0pt 0pt 10pt 10pt;
+      }
+    }
+  }
+}

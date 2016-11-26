@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
+#main {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: row; }
+  #main #loginBox {
+    display: flex;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 10pt;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: auto;
+    box-shadow: 0.2vw 1vh 200pt 0px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    align-items: center;
+    font-family: "Roboto", sans-serif; }
+    #main #loginBox #header {
+      flex: 0 1 auto;
+      min-height: 10vh;
+      display: flex;
+      margin: auto;
+      width: 40vh;
+      border-radius: 10pt 10pt 0pt 0pt;
+      flex-direction: column;
+      align-items: center; }
+      #main #loginBox #header span {
+        margin: auto;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        display: flex;
+        font-size: 1.7em;
+        padding: 2vw;
+        flex: 1 1 auto;
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center; }
+    #main #loginBox #body {
+      width: 40vh;
+      flex: 1 0 auto;
+      margin: auto;
+      border-radius: 0pt 0pt 10pt 10pt;
+      display: flex;
+      flex-direction: column; }
+      #main #loginBox #body #logins {
+        display: flex;
+        flex: 1 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-radius: 0pt 0pt 10pt 10pt; }
