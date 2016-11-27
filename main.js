@@ -104,6 +104,10 @@ app.get("/", (req, resp) => {
   })
 })
 
+app.get("/backgrounds", (req, resp) => {
+  resp.status(200).json(background_library).end();
+})
+
 app.get("*", (req, resp) => {
   console.log(`404 on ${req.path}`.warn);
   let req_path = req.path.split("/");
