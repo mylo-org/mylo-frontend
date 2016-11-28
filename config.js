@@ -1,12 +1,11 @@
 const config = {
   prod: {
     port: process.env.PORT,
-    redisURL: process.env.REDIS_URL
+    backend: "https://mylo-api.herokuapp.com"
   },
   dev: {
     port: 8080,
-    backend: "localhost:8550",
-    redisURL: "localhost:6379"
+    backend: "localhost:8550"
   }
 }
 

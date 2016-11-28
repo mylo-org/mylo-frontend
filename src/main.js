@@ -11,7 +11,7 @@ const setupMenu = () => {
       })
     })
     $(".menu").on("mouseleave", () => {
-      $("#centerMenu").animate({
+      $("#centerMenu").animate1({
         opacity: 0
       })
     })
