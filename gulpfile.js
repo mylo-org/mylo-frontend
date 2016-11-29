@@ -5,17 +5,23 @@ const sass = require('gulp-sass');
 const colors = require("colors");
 const fs = require("fs");
 const path = require("path");
-const webpackConfig = {
-  entry: './src/main.js',
-  module: {
-    loaders: [{
-      test: /.js?$/,
-      loader: 'babel-loader'
-    }]
-  },
-  output: {
-    path: path.resolve(`./static/js`),
-    filename: `dash_bundle.js`
+const genWebpack = (entry, filename) => {
+  return {
+    entry: path.resolve(entry),
+    watch: true,
+    module: {
+      loaders: [{
+        test: /.js?$/,
+        loader: 'babel-loader'
+      }, {
+        test: /.json?$/,
+        loader: 'json-loader'
+      }]
+    },
+    output: {
+      path: path.resolve(`./static/js`),
+      filename: filename
+    }
   }
 }
 
@@ -28,7 +34,10 @@ gulp.task('sass', () => {
 
 gulp.task("webpack", () => {
   gulp.src("./src/main.js")
-    .pipe(webpack(webpackConfig))
+    .pipe(webpack(genWebpack(`./src/main.js`, `dash_bundle.js`)))
+    .pipe(gulp.dest("./static/js/"))
+  gulp.src('./static/js/index.js')
+    .pipe(webpack(genWebpack(`./static/js/index.js`, `index_bundle.js`)))
     .pipe(gulp.dest("./static/js/"))
 })
 

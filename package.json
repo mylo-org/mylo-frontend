@@ -15,7 +15,8 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
-    "gulp-webpack": "^1.5.0"
+    "gulp-webpack": "^1.5.0",
+    "json-loader": "^0.5.4"
   },
   "scripts": {
     "start": "node .",

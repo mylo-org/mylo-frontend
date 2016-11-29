@@ -1,43 +1,33 @@
-// const request = require("request");
-// const config = require("../config.js");
-// const twitter_api = "http://api.twitter.com";
-//   // const statusChangeCb = (resp) => {
-//   //   console.log("FB CB Called");
-//   //   console.log(resp);
-//   //   switch (resp.status) {
-//   //     case "connected":
-//   //       console.log("User connected through FB");
-//   //       break;
-//   //     case "not_authorized":
-//   //       console.log("Not authed w/ FB");
-//   //       break;
-//   //     default:
-//   //       console.log("other FB")
-//   //       break;
-//   //   }
-//   // };
+const request = require("request");
+const config = require("../../config.js");
 
-// // const checkFbState = () => {
-// //   console.log("checking");
-// //   FB.getLoginStatus((resp) => {
-// //     statusChangeCb(resp);
-// //   });
-// // };
+const dealWithAPI = (service, username, password) => {
+  let opts = {
+    method: "POST",
+    url: `${config["API"]}/user/new`,
+    json: true,
+    data: {
+      service: "test_001",
+      creds: {
+        "username": "username",
+        "password": "password"
+      }
+    }
+  };
+  request(opts, (err, resp, body) => {
+    if (err) {
+      console.error(`Error from API /user/new -- ${err}`);
+      return;
+    }
+    Cookies.set("user_id", body.user_id);
+    Cookies.set("user_token", body.user_token);
+  })
+}
 
-// // $(document).ready(() => {
-// //   window.fbAsyncInit = function() {
-// //     FB.init({
-// //       appId: '111825175967726',
-// //       cookie: true,
-// //       xfbml: true,
-// //       version: 'v2.8'
-// //     });
-// //   };
-// // });
 
-// const setupTwitter = () => {
-//   request.post(`${twitter_api}/oauth/request_token`,{})
-// }
+const commands = {
+  test: () => {}
+}
 
 const clearCookies = () => {
   let all = Cookies.get();
@@ -46,7 +36,14 @@ const clearCookies = () => {
   }
 }
 
+const setupHandlers = () => {
+  $(".login").on("click", function() {
+    commands[$(this).attr("service")]();
+  })
+}
+
 $(document).ready(() => {
   // setupTwitter();
   clearCookies();
+  setupHandlers();
 })
