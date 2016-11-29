@@ -1,11 +1,13 @@
 const config = {
   prod: {
     port: process.env.PORT,
-    backend: "https://mylo-api.herokuapp.com"
+    api: "https://mylo-api.herokuapp.com",
+    JWT: process.env.JWT
   },
   dev: {
     port: 8080,
-    backend: "localhost:8550"
+    api: "http://localhost:8550",
+    JWT: "(P*O_=n"
   }
 }
 
