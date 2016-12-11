@@ -3,15 +3,14 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const hbs = require("hbs");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const fs = require("fs");
 
 const config = require("./config.js");
-const background_library = fs.readdirSync(path.resolve("./static/assets/dash_backgrounds"));
-const icon_library = fs.readdirSync(path.resolve("./static/assets/icons"));
+const background_library = fs.readdirSync(path.resolve("./static/dash_backgrounds"));
+const icon_library = fs.readdirSync(path.resolve("./static/icons"));
 const API = require("./classes/api.js");
 
 const port = config.port;
@@ -47,34 +46,16 @@ app.get("/icons", (req, resp) => {
   resp.status(200).json(icon_library).end();
 })
 
-app.use("/js", express.static(path.resolve("./static/js")));
-app.use("/assets", express.static(path.resolve("./static/assets")));
-app.use("/stylesheets", express.static(path.resolve("./static/stylesheets")));
-app.set("views", path.join("./static"));
-app.set("view engine", "hbs");
+
+app.use("/static", express.static(path.resolve("./static")));
+app.use("/assets", express.static(path.resolve("./dist")));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 setupMiddleware();
 
 app.get("/", (req, resp) => {
-  resp.render("index", {}, (err, html) => {
-    if (err) {
-      console.log(`Error rendering index page -- ${err}`.warn);
-    } else {
-      resp.status(200).send(html).end();
-    }
-  })
+  resp.sendFile(path.resolve("./dist/index.html"));
 })
-
-app.get("/dash", (req, resp) => {
-  resp.render("dash", req.user, (err, html) => {
-    if (err) {
-      console.log(`ERROR: Error rendering dash page -- ${err}`.error);
-    }
-    resp.status(200).send(html).end();
-  })
-})
-
 
 app.get("*", (req, resp) => {
   console.log(`404 on ${req.path}`.warn);
