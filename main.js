@@ -17,17 +17,6 @@ const port = config.port;
 const app = express();
 const server = require('http').createServer(app);
 
-const setupMiddleware = () => {
-  fs.readdirSync(path.resolve(`./middleware`)).forEach((middleware) => {
-    try {
-      app.use(require(`./middleware/${middleware}`));
-      console.log(`Successfully registered ${middleware.split(".")[0].substr(1)} middleware`.action);
-    } catch (err) {
-      console.log(`Failed to use ${middleware} middleware -- ${err}`.warn);
-    }
-  })
-}
-
 colors.setTheme({
   connect: ["yellow"],
   user: ["green"],
@@ -47,13 +36,15 @@ app.get("/icons", (req, resp) => {
 })
 
 
-app.use("/static", express.static(path.resolve("./static")));
+app.use("/assets", express.static(path.resolve("./static")));
 app.use("/assets", express.static(path.resolve("./dist")));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-setupMiddleware();
 
 app.get("/", (req, resp) => {
+  resp.sendFile(path.resolve("./dist/index.html"));
+})
+app.get("/dash", (req, resp) => {
   resp.sendFile(path.resolve("./dist/index.html"));
 })
 

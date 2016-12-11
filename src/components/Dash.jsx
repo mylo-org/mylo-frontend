@@ -14,6 +14,7 @@ class Dash extends React.Component {
       <div className="dash" id={this.props.location}>
       {this.props.widgets.map((widget)=>{
         return (<Widget
+          key={widget.location}
           size={1}
           location={widget.location}
           name={widget.name}

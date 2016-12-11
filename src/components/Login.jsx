@@ -15,7 +15,9 @@ class Login extends React.Component {
 
   isUser() {
     let ui = Auth.getUserId();
-    if (config.env === "dev" || ui) {
+    console.log(`Dev? ${config.env === "dev"}. User? ${!(!ui)}`);
+    //FIXME  VV
+    if (config.env === "dev" || ui || true) {
       return true;
     } else {
       return false;
@@ -25,7 +27,7 @@ class Login extends React.Component {
   render() {
     if (this.isUser()) {
       console.log(`Redirecting to /dash`);
-      return <Redirect to="/dash" />;
+      window.location = "/dash";
     }
     return null;
   }

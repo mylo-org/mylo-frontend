@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import auth from '../scripts/auth';
 import api from '../scripts/api';
 import Dash from './Dash';
@@ -46,8 +45,9 @@ class DashController extends React.Component {
     return (
       <div className="menu">
       {this.state.user.dashboards.map((dash)=>{
-        let img_url = window.location.href + dash.icon;
-        return (<div className="menuIcon">
+        let img_url = window.location.origin + dash.icon;
+        return (<div key={dash.location}
+          className="menuIcon">
             <img src={img_url} className="menuPicture"/>
           </div>)
       })}
@@ -62,6 +62,7 @@ class DashController extends React.Component {
     return (<div className="dashContainer">
         {this.state.user.dashboards.map((dash) => {
             return (<Dash
+              key={dash.location}
               location={dash.location}
               background={dash.background}
               widgets={dash.widgets}
@@ -73,7 +74,8 @@ class DashController extends React.Component {
 
   render() {
     if (this.state.redirect === true) {
-      return (<Redirect to="/" />);
+      window.location = "/";
+      return;
     }
     return (
       <div className="DashController">
