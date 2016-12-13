@@ -17,7 +17,7 @@ class Login extends React.Component {
     let ui = Auth.getUserId();
     console.log(`Dev? ${config.env === "dev"}. User? ${!(!ui)}`);
     //FIXME  VV
-    if (config.env === "dev" || ui || true) {
+    if (config.env === "dev" || ui) {
       return true;
     } else {
       return false;

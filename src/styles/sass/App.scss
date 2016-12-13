@@ -1,0 +1,11 @@
+@import "./mixins/full.scss";
+body {
+  background: #222;
+  @include full();
+  #app {
+    @include full();
+    .application {
+      @include full();
+    }
+  }
+}

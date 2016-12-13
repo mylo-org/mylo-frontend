@@ -27,15 +27,6 @@ colors.setTheme({
   warn: ['red']
 })
 
-app.get("/backgrounds", (req, resp) => {
-  resp.status(200).json(background_library).end();
-})
-
-app.get("/icons", (req, resp) => {
-  resp.status(200).json(icon_library).end();
-})
-
-
 app.use("/assets", express.static(path.resolve("./static")));
 app.use("/assets", express.static(path.resolve("./dist")));
 app.use(cookieParser());

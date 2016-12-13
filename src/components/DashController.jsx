@@ -2,6 +2,8 @@ import React from 'react';
 import auth from '../scripts/auth';
 import api from '../scripts/api';
 import Dash from './Dash';
+require("normalize.css/normalize.css");
+require("styles/DashTop.css");
 const API = new api();
 const Auth = new auth();
 
@@ -74,8 +76,9 @@ class DashController extends React.Component {
 
   render() {
     if (this.state.redirect === true) {
+      console.log(`Redirecting to /`);
       window.location = "/";
-      return;
+      return null;
     }
     return (
       <div className="DashController">

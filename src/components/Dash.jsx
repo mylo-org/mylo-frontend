@@ -11,17 +11,19 @@ class Dash extends React.Component {
   }
   render() {
     return (
-      <div className="dash" id={this.props.location}>
-      {this.props.widgets.map((widget)=>{
-        return (<Widget
-          key={widget.location}
-          size={1}
-          location={widget.location}
-          name={widget.name}
-          />);
-      })}
-      </div>
-    )
+      <div className="dashBg" style={{backgroundImage: `url(${this.props.background})`, backgroundSize: 'cover'}}>
+        <div className="dash" id={this.props.location}>
+          {
+            this.props.widgets.map((widget)=>{
+            return (<Widget
+              key={widget.location}
+              location={widget.location}
+              name={widget.name}
+              amount={this.props.widgets.length}
+              />);
+          })}
+        </div>
+      </div>)
   }
 }
 
