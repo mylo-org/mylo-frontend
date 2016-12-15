@@ -1,5 +1,6 @@
+import api from './api';
+const API = new api();
 const Cookie = require('js-cookie');
-import config from "config";
 
 class Auth {
   getUserId() {
@@ -7,12 +8,38 @@ class Auth {
     if (user_id) {
       return user_id;
     } else {
-      if (config.env === "dev") {
-        return "f9265439-9b1f-141d-9d8f-bfe58d783f0f"
-      } else {
-        return false;
-      }
+      return false;
     }
+  }
+  setCookie(ui) {
+    if (this.getUserId()) {
+      return true;
+    }
+    if (ui) {
+      API.getUser(ui)
+        .then((user) => {
+          user = user[0];
+          if (user.user_id === ui) {
+            Cookie.set("_ui", ui);
+          } else {
+            console.warn(`Somehow not matching user_id from DB and local? API: ${user.user_id}; Local: ${ui}`);
+            return false;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          return false;
+        })
+    } else {
+      console.warn(`Attempted to set user without passing id`);
+      return false;
+    }
+  }
+  revokeCookie() {
+    if (Cookie.get("_ui")) {
+      Cookie.remove("_ui");
+    }
+    return true;
   }
 }
 

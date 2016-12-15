@@ -9,7 +9,13 @@ class API {
       method: "GET",
       json: true
     }
-    return request(opts);
+    try {
+      let payload = request(opts);
+      return payload;
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
   }
 }
 

@@ -1,0 +1,27 @@
+$menuSize:4vw;
+$imageSize:5vw;
+.menu {
+  max-width: $menuSize;
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.4);
+  .menuIcon {
+    display: flex;
+    margin: auto;
+    flex: 1 1 auto;
+    max-width: $imageSize;
+    max-height: $imageSize;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    .menuPicture {
+      flex: 1 0 auto;
+      max-width: $imageSize;
+      max-height: $imageSize;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import config from 'config';
 
 import Widget from "./Widget";
 
@@ -11,7 +12,7 @@ class Dash extends React.Component {
   }
   render() {
     return (
-      <div className="dashBg" style={{backgroundImage: `url(${this.props.background})`, backgroundSize: 'cover'}}>
+      <div className="dashBg" style={{backgroundImage: `url(${config.img_url}/backgrounds${this.props.background})`, backgroundSize: 'cover'}}>
         <div className="dash" id={this.props.location}>
           {
             this.props.widgets.map((widget)=>{
