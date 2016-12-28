@@ -1,6 +1,4 @@
 import React from "react";
-import config from 'config';
-
 import Widget from "./Widget";
 
 class Dash extends React.Component {
@@ -10,10 +8,8 @@ class Dash extends React.Component {
       page: "dash"
     }
   }
-  render() {
-    return (
-      <div className="dashBg" style={{backgroundImage: `url(${config.img_url}/backgrounds${this.props.background})`, backgroundSize: 'cover'}}>
-        <div className="dash" id={this.props.location}>
+  renderDash() {
+    return (<div className="dash" id={this.props.location}>
           {
             this.props.widgets.map((widget)=>{
             return (<Widget
@@ -23,7 +19,15 @@ class Dash extends React.Component {
               amount={this.props.widgets.length}
               />);
           })}
-        </div>
+        </div>)
+  }
+
+  render() {
+    return (
+      <div className="dashBg">
+      {this.state.page === "dash" ?
+        this.renderDash() : this.renderSettings()
+    }
       </div>)
   }
 }
@@ -32,7 +36,6 @@ Dash.displayName = "Dash";
 
 Dash.propTypes = {
   location: React.PropTypes.number,
-  background: React.PropTypes.string,
   widgets: React.PropTypes.array
 };
 

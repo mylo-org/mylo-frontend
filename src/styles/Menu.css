@@ -1,22 +1,30 @@
 .menu {
-  max-width: 4vw;
+  width: 5vw;
   align-items: center;
   display: flex;
   height: 100vh;
+  z-index: 100;
   position: fixed;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgba(0, 0, 0, 0.4); }
-  .menu .menuIcon {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.6s; }
+  .menu.smallMenu {
+    width: 1px !important; }
+  .menu .miniDash,
+  .menu .miniDashCont {
+    overflow: hidden;
     display: flex;
     margin: auto;
     flex: 1 1 auto;
-    max-width: 5vw;
-    max-height: 5vw;
+    z-index: 101;
+    transition: all 0.6s;
+    width: 5vw;
+    height: 5vw;
     position: relative;
     flex-direction: row;
     align-items: center; }
-    .menu .menuIcon .menuPicture {
-      flex: 1 0 auto;
-      max-width: 5vw;
-      max-height: 5vw; }
+  .menu .miniDash {
+    border: 1px solid black;
+    opacity: 0.9; }

@@ -2,15 +2,16 @@
 
 import { Redirect } from 'react-router';
 import React from 'react';
-import auth from '../scripts/auth';
+import auth from '../../scripts/auth';
 const Auth = new auth();
-const DUMMY_USER = "30a0c5f7-f314-639f-c3a5-7e020d016090";
+const DUMMY_USER = "df4c88c5-c9af-4016-8d86-bad572cf19be";
 
 class Login extends React.Component {
 
   constructor() {
-
     super();
+    this.state = {};
+    this.setUser = this.setUser.bind(this);
   }
 
   isUser() {
@@ -35,7 +36,7 @@ class Login extends React.Component {
       window.location = "/dash";
     }
     return (<div>
-      <span onClick={this.setUser()}>
+      <span onClick={this.setUser}>
       Dummy
       </span>
     </div>);
@@ -43,11 +44,5 @@ class Login extends React.Component {
 }
 
 Login.displayName = 'Login';
-
-// Uncomment properties you need
-Login.propTypes = {
-  location: React.PropTypes.object,
-  routeParams: React.PropTypes.object,
-};
 
 export default Login;

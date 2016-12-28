@@ -10,8 +10,20 @@ class API {
       json: true
     }
     try {
-      let payload = request(opts);
-      return payload;
+      return request(opts);
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+  getServiceImg(service) {
+    let opts = {
+      url: `${config.API}/service/image?service=${service}`,
+      method: "GET",
+      json: true
+    }
+    try {
+      return request(opts);
     } catch (err) {
       console.error(err);
       return null;

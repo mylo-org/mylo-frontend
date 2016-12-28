@@ -4,8 +4,8 @@ import { render } from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import App from './components/App';
-import Login from './components/Login';
-import DashController from './components/DashController';
+import Login from './components/pages/Login';
+import DashController from './components/pages/dash/layout/DashController.jsx';
 // Render the main component into the dom
 
 render((

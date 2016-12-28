@@ -1,5 +1,7 @@
 'use strict';
 
+//TODO: Make this use React Router not Express
+
 const bodyParser = require("body-parser");
 const express = require("express");
 const jwt = require("jsonwebtoken");
@@ -8,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const fs = require("fs");
 
-const config = require("./config.js");
+const config = require("./src/config");
 const background_library = fs.readdirSync(path.resolve("./static/dash_backgrounds"));
 const icon_library = fs.readdirSync(path.resolve("./static/icons"));
 const API = require("./classes/api.js");

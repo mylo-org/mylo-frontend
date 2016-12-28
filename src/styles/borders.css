@@ -1,14 +1,15 @@
-.widget {
+.widget,
+.miniWidget {
   border: 1px solid orange; }
 
-.dashContainer {
-  border: 1px solid green; }
-
-.dashController {
-  border: 1px solid red; }
-
 .menuIcon {
-  border: 1px solid brown; }
+  border: 1px solid red; }
 
 .dash {
   border: 1px solid black; }
+
+.settings {
+  border: 1px solid blue; }
+
+.menu {
+  border: 1px solid white; }

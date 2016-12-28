@@ -1,25 +1,33 @@
 .menu {
-  max-width: 4vw;
+  width: 5vw;
   align-items: center;
   display: flex;
   height: 100vh;
+  z-index: 100;
   position: fixed;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgba(0, 0, 0, 0.4); }
-  .menu .menuIcon {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.6s; }
+  .menu.smallMenu {
+    width: 1px !important; }
+  .menu .miniDash,
+  .menu .miniDashCont {
+    overflow: hidden;
     display: flex;
     margin: auto;
     flex: 1 1 auto;
-    max-width: 5vw;
-    max-height: 5vw;
+    z-index: 101;
+    transition: all 0.6s;
+    width: 5vw;
+    height: 5vw;
     position: relative;
     flex-direction: row;
     align-items: center; }
-    .menu .menuIcon .menuPicture {
-      flex: 1 0 auto;
-      max-width: 5vw;
-      max-height: 5vw; }
+  .menu .miniDash {
+    border: 1px solid black;
+    opacity: 0.9; }
 
 .DashController {
   display: block;
@@ -29,11 +37,26 @@
   left: 0px;
   top: 0px;
   flex-direction: row; }
+  .DashController .settings {
+    height: 2vw;
+    width: 2vw;
+    right: 1vw;
+    top: 1vh;
+    position: absolute;
+    border-radius: 20%; }
   .DashController .dashContainer {
     height: 100vh;
     width: 100vw; }
-    .DashController .dashContainer .dash {
-      height: 98vh;
-      width: 98vw;
-      margin: 1vh 1vw 1vh 1vw;
-      flex-direction: row; }
+    .DashController .dashContainer .dashBg {
+      display: block;
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+      left: 0px;
+      top: 0px;
+      background-size: "cover"; }
+      .DashController .dashContainer .dashBg .dash {
+        height: 98vh;
+        width: 98vw;
+        margin: 1vh 1vw 1vh 1vw;
+        flex-direction: row; }
