@@ -1,8 +1,8 @@
 import React from 'react';
-import auth from '../../../../scripts/auth';
-import api from '../../../../scripts/api';
+import auth from '../../../scripts/auth';
+import api from '../../../scripts/api';
 import Dash from './Dash';
-import Menu from '../Menu/Menu';
+import Menu from './Menu';
 require("normalize.css/normalize.css");
 require("styles/DashTop.css");
 const API = new api();
@@ -14,7 +14,8 @@ class DashController extends React.Component {
     super();
     this.state = {
       menu: true,
-      settings: false
+      settings: false,
+      active: 0
     };
     this.renderDash = this.renderDash.bind(this);
     this.renderMenu = this.renderMenu.bind(this);
@@ -55,19 +56,30 @@ class DashController extends React.Component {
     })
   }
 
+  setActive(pos) {
+    if (typeof pos !== 'number') {
+      console.error(`Position must be number to set active`);
+      return;
+    }
+    this.setState({ active: pos });
+  }
 
   renderDash() {
     if (!this.state.user) {
       return null;
     }
+    console.log(`Rendering dash`);
     return (<div className="dashContainer">
-        {this.state.user.dashboards.map((dash) => {
-            return (<Dash
+        {this.state.user.dashboards.map((dash,i) => {
+            return (
+              <Dash
               key={dash.location}
               location={dash.location}
               widgets={dash.widgets}
-               /> );
-              }
+              active={this.state.active === i}
+              cb={this.setActive}
+              />);
+          }
         )}
         </div>)
   }
@@ -76,9 +88,7 @@ class DashController extends React.Component {
     if (!this.state.user) {
       return null;
     }
-    return (<Menu
-      dashboards={this.state.user.dashboards}
-      />)
+    return (<Menu/>)
   }
 
   toggleSettings() {

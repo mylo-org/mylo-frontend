@@ -1,8 +1,8 @@
 import React from 'react';
-import MiniDash from "./MiniDash.jsx";
+
 
 require("normalize.css/normalize.css");
-require("styles/mini/menu.css");
+require("styles/menu.css");
 
 const MENU_DURATION = 3000;
 // const MENU_DURATION =-1;
@@ -35,14 +35,6 @@ class Menu extends React.Component {
     this.setTimer()
   }
 
-  renderMenuContent() {
-    // console.log(`Told to show menu`);
-    return this.props.dashboards.map((dash) => {
-      return <MiniDash key={dash.location} data={dash}
-      />
-    })
-  }
-
   calcWidth() {
     console.log(`Told ${this.state.show === true ? '' : 'not'} to show menu`);
     if (this.state.show === true) {
@@ -53,7 +45,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    return (<div className={`menu ${this.state.show === true ? null : 'smallMenu'}`} onMouseEnter={this.handleHover}>{this.renderMenuContent()}</div>)
+    return (<div className={`menu ${this.state.show === true ? null : 'smallMenu'}`} onMouseEnter={this.handleHover}></div>)
   }
 }
 

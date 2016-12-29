@@ -6,7 +6,6 @@ class Widget extends React.Component {
   constructor() {
     super();
     this.state = {
-      page: "widget",
       hover: false
     }
     this.handleHover = this.handleHover.bind(this);
@@ -30,11 +29,13 @@ class Widget extends React.Component {
   }
 
   getWidth(portion) {
-    return portion * 24 + "vw";
+    const multi = this.props.mini ? 2.4 : 24;
+    return portion * multi + "vw";
   }
 
   getHeight(portion) {
-    return portion * 45 + "vh";
+    const multi = this.props.mini ? 2.5 : 45;
+    return portion * multi + "vh";
   }
 
   setSize(height, width) {
@@ -101,7 +102,7 @@ class Widget extends React.Component {
 
   render() {
     return (
-      <div className="widget" onMouseEnter={this.handleHover} onMouseLeave={this.handleHoverLeave} data-service={this.props.name} style={{minWidth: this.state.width, minHeight: this.state.height }}>
+      <div className={`${this.props.mini ? 'miniW' : 'w'}idget`} onMouseEnter={this.props.mini ? null : this.handleHover} onMouseLeave={this.props.mini ? null : this.handleHoverLeave} data-service={this.props.name} style={{minWidth: this.state.width, minHeight: this.state.height }}>
       </div>
     );
   }
