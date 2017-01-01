@@ -3,5 +3,5 @@ node_js:
   - "6"
   - "node"
 script:
-  - test $TRAVIS_BRANCH = "dev" && npm run build
-  - test $TRAVIS_BRANCH = "master" && npm run release
+  - if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run build; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run release; fi
