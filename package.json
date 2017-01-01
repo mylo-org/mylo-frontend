@@ -52,7 +52,8 @@
   },
   "scripts": {
     "dev": "node builder.js --env=dev",
-    "build": "npm run copy && webpack --env=prod",
+    "release": "npm run copy && webpack --env=prod",
+    "build": "npm run copy && webpack --env=heroku_dev",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "start": "node ."
   },

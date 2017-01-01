@@ -4,7 +4,7 @@ const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 
 // List of allowed environments
-const allowedEnvs = ['dev', 'prod'];
+const allowedEnvs = ['dev', 'prod', "heroku_dev"];
 
 // Set the correct environment
 let env;

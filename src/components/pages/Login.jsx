@@ -3,8 +3,9 @@
 import { Redirect } from 'react-router';
 import React from 'react';
 import auth from '../../scripts/auth';
+import config from 'config';
 const Auth = new auth();
-const DUMMY_USER = "a59f2da9-9ff9-44cf-a8d7-d38ef36dfada";
+const DUMMY_USER = config["dummy_user"];
 
 class Login extends React.Component {
 
@@ -31,11 +32,12 @@ class Login extends React.Component {
       console.log(`Redirecting to /dash`);
       window.location = "/dash";
     }
-    return (<div>
+    return config.env !== "prod" ?
+      (<div>
       <span onClick={this.setUser}>
       Dummy
       </span>
-    </div>);
+    </div>) : null;
   }
 }
 
