@@ -44,7 +44,7 @@ class DashController extends React.Component {
         console.log(`Getting ${user_id}`);
         return API.getUser(user_id)
           .then((user) => {
-            res(user[0]);
+            res(user);
           })
           .catch((err) => {
             console.error(`Error getting user from API -- ${err} ${err.stack}`);
@@ -68,7 +68,9 @@ class DashController extends React.Component {
     if (!this.state.user) {
       return null;
     }
-    console.log(`Rendering dash`);
+    // const nonActives = this.state.user.dashboards.filter((dash) => {
+    // return dash.location !== this.state.active
+    // })
     return (<div className="dashContainer">
         {this.state.user.dashboards.map((dash,i) => {
             return (
@@ -78,6 +80,8 @@ class DashController extends React.Component {
               widgets={dash.widgets}
               active={this.state.active === i}
               cb={this.setActive}
+              amount={this.state.user.dashboards.length}
+              // isCenter={nonActives[Math.floor(nonActives.length / 2)].location === dash.location}
               />);
           }
         )}

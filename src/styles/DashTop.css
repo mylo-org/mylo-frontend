@@ -1,5 +1,5 @@
 .menu {
-  width: 5vw;
+  width: 10vw;
   align-items: center;
   display: flex;
   height: 100vh;
@@ -8,10 +8,11 @@
   flex-direction: column;
   justify-content: space-around;
   overflow: hidden;
+  opacity: 1;
   background: rgba(255, 255, 255, 0.3);
   transition: all 0.6s; }
   .menu.smallMenu {
-    width: 1px !important; }
+    opacity: 0; }
   .menu .miniDash,
   .menu .miniDashCont {
     overflow: hidden;
@@ -20,8 +21,8 @@
     flex: 1 1 auto;
     z-index: 101;
     transition: all 0.6s;
-    width: 5vw;
-    height: 5vw;
+    width: 10vw;
+    height: 10vw;
     position: relative;
     flex-direction: row;
     align-items: center; }
@@ -47,6 +48,17 @@
   .DashController .dashContainer {
     height: 100vh;
     width: 100vw; }
+    .DashController .dashContainer .miniDashCont {
+      left: 1vw;
+      position: absolute;
+      height: 5vw;
+      width: 8vw;
+      overflow: hidden;
+      top: 45vh;
+      opacity: 1;
+      transition: 0.5s all; }
+      .DashController .dashContainer .miniDashCont.hidden {
+        opacity: 0; }
     .DashController .dashContainer .dashBg {
       display: block;
       position: absolute;

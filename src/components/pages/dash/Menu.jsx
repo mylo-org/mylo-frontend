@@ -5,7 +5,6 @@ require("normalize.css/normalize.css");
 require("styles/menu.css");
 
 const MENU_DURATION = 3000;
-// const MENU_DURATION =-1;
 
 class Menu extends React.Component {
   constructor() {
@@ -19,6 +18,26 @@ class Menu extends React.Component {
 
   componentDidMount() {
     this.setTimer();
+  }
+
+  hideMinis() {
+    if (this.state.show === false) {
+      console.log(`Hiding minis`)
+      let minis = document.getElementsByClassName('miniDashCont');
+      for (var i = 0; i < minis.length; i++) {
+        if (minis[i].className.indexOf("hidden") === -1) minis[i].className += " hidden";
+      }
+    }
+  }
+
+  showMinis() {
+    if (this.state.show === true) {
+      console.log(`Showing minis`)
+      let minis = document.getElementsByClassName('miniDashCont');
+      for (var i = 0; i < minis.length; i++) {
+        minis[i].className = minis[i].className.replace("hidden", "");
+      }
+    }
   }
 
   setTimer() {
@@ -45,7 +64,8 @@ class Menu extends React.Component {
   }
 
   render() {
-    return (<div className={`menu ${this.state.show === true ? null : 'smallMenu'}`} onMouseEnter={this.handleHover}></div>)
+    this.state.show ? this.showMinis() : this.hideMinis();
+    return (<div className={`menu ${this.state.show === true ? '' : 'smallMenu'}`} onMouseEnter={this.handleHover}></div>)
   }
 }
 

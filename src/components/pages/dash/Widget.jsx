@@ -34,7 +34,7 @@ class Widget extends React.Component {
   }
 
   getHeight(portion) {
-    const multi = this.props.mini ? 2.5 : 45;
+    const multi = this.props.mini ? 4.5 : 45;
     return portion * multi + "vh";
   }
 

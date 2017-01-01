@@ -4,12 +4,7 @@ const Cookie = require('js-cookie');
 
 class Auth {
   getUserId() {
-    let user_id = Cookie.get('_ui');
-    if (user_id) {
-      return user_id;
-    } else {
-      return false;
-    }
+    return Cookie.get('_ui');
   }
   setCookie(ui) {
     if (this.getUserId()) {
@@ -18,7 +13,6 @@ class Auth {
     if (ui) {
       API.getUser(ui)
         .then((user) => {
-          user = user[0];
           if (user.user_id === ui) {
             Cookie.set("_ui", ui);
           } else {
