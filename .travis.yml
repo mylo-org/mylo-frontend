@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "6"
   - "node"
 script:
   - if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run build; fi
