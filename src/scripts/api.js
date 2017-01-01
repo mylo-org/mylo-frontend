@@ -5,7 +5,7 @@ const request = require('request-promise');
 class API {
   getUser(user_id) {
     let opts = {
-      url: `${config.API}/user/${user_id}`,
+      url: `${config.API}user/${user_id}`,
       method: "GET",
       json: true
     }
@@ -18,7 +18,7 @@ class API {
   }
   getServiceImg(service) {
     let opts = {
-      url: `${config.API}/service/image?service=${service}`,
+      url: `${config.API}service/image?service=${service}`,
       method: "GET",
       json: true
     }
