@@ -42,7 +42,28 @@ class Dash extends React.Component {
       const total = 100;
       const nonActiveAmount = this.props.amount - 1;
       let eachSize = total / nonActiveAmount;
-      const topDiff = (eachSize * this.props.location - 12) + "vh";
+      let offset;
+      switch (nonActiveAmount) {
+        case 1:
+          offset = 55;
+          break;
+        case 2:
+          offset = 30;
+          break;
+        case 3:
+          offset = 20;
+          break;
+        case 4:
+          offset = 17;
+          break;
+        case 5:
+          offset = 15;
+          break;
+        case 6:
+          offset = 13;
+          break;
+      }
+      const topDiff = (eachSize * this.props.location - offset) + "vh";
       return { top: topDiff }
     }
   }

@@ -2,20 +2,12 @@
 
 //TODO: Make this use React Router not Express
 
-const bodyParser = require("body-parser");
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const path = require("path");
-const cookieParser = require("cookie-parser");
 const colors = require("colors");
-const fs = require("fs");
 
-const config = require("./src/config");
-const background_library = fs.readdirSync(path.resolve("./static/dash_backgrounds"));
-const icon_library = fs.readdirSync(path.resolve("./static/icons"));
-const API = require("./classes/api.js");
 
-const port = config.port;
+const port = process.env.PORT || 8080;
 const app = express();
 const server = require('http').createServer(app);
 
@@ -31,8 +23,6 @@ colors.setTheme({
 
 app.use("/assets", express.static(path.resolve("./static")));
 app.use("/assets", express.static(path.resolve("./dist")));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, resp) => {
   resp.sendFile(path.resolve("./dist/index.html"));
@@ -54,24 +44,3 @@ app.get("*", (req, resp) => {
 app.listen(port, () => {
   console.log(`Server listening on ${port}`.action);
 })
-
-
-const example_user = {
-  "_id": "82a246aa-7008-8d1e-4ad5-29bfe7585417",
-  "user_id": "82a246aa-7008-8d1e-4ad5-29bfe7585417",
-  "links": ["test_001"],
-  "dashboards": [{
-    "icon": "/assets/icons/window.svg",
-    "location": 0,
-    "background": "/assets/dash_backgrounds/blue.jpg",
-    "widgets": [{
-      "name": "Test",
-      "location": 0,
-      "service": "test_001"
-    }, {
-      "name": "Add",
-      "location": 1,
-      "service": "add_001"
-    }]
-  }]
-}

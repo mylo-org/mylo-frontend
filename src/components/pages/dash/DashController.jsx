@@ -89,7 +89,7 @@ class DashController extends React.Component {
   }
 
   renderMenu() {
-    if (!this.state.user) {
+    if (!this.state.user || this.state.user.dashboards.length == 1) {
       return null;
     }
     return (<Menu/>)
