@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "6"
+  - "node"
+script:
+  - test $TRAVIS_BRANCH = "dev" && npm run build
+  - test $TRAVIS_BRANCH = "master" && npm run release
