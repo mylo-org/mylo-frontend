@@ -1,0 +1,28 @@
+{
+  "name": "mylo-frontend",
+  "description": "The frontend for MyLo",
+  "scripts": {
+  },
+  "env": {
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LOG": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "logentries",
+    "newrelic"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
