@@ -1,7 +1,5 @@
-'use strict';
-
+require("newrelic");
 //TODO: Make this use React Router not Express
-
 const express = require("express");
 const path = require("path");
 const colors = require("colors");
