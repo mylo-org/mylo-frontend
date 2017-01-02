@@ -4,14 +4,14 @@ const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 
 // List of allowed environments
-const allowedEnvs = ['dev', 'prod', "heroku_dev"];
+const allowedEnvs = ['local', 'prod', "dev"];
 
 // Set the correct environment
 let env;
 if (args.env) {
   env = args.env;
 } else {
-  env = 'dev';
+  env = 'local';
 }
 process.env.REACT_WEBPACK_ENV = env;
 
@@ -22,7 +22,7 @@ process.env.REACT_WEBPACK_ENV = env;
  */
 function buildConfig(wantedEnv) {
   let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
-  let validEnv = isValid ? wantedEnv : 'dev';
+  let validEnv = isValid ? wantedEnv : 'local';
   let config = require(path.join(__dirname, 'cfg/' + validEnv));
   console.log(`Running w/ ${validEnv} config`);
   return config;

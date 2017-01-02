@@ -3,9 +3,9 @@
 import baseConfig from './base';
 
 let config = {
-  env: 'heroku_dev',
-  API: 'http://mylo-api-dev.herokuapp.com',
-  dummy_user: "0f3e88fb-de97-4575-8b0f-096836309ffb"
+  env: 'local',
+  API: 'http://localhost:8550',
+  dummy_user: "a59f2da9-9ff9-44cf-a8d7-d38ef36dfada"
 };
 
 export default Object.freeze(Object.assign({}, baseConfig, config));
