@@ -7,6 +7,7 @@ script:
 notifications:
   slack: mylo-dash:PiBSWnqPLOGdQSt8W0SavSaZ
 deploy:
+  provider: heroku
   app:
     master: mylo-frontend
     dev: mylo-frontend-dev
