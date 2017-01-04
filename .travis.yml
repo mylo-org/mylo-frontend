@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  - "node"
+- node
 script:
-  - if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run build; fi
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run release; fi
+- if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run build; fi
+- if [ "$TRAVIS_BRANCH" = "master" ]; then npm run release; fi
 notifications:
   slack: mylo-dash:PiBSWnqPLOGdQSt8W0SavSaZ
+deploy:
+  app:
+    master: mylo-frontend
+    dev: mylo-frontend-dev
+  api_key:
+    secure: oshw0pBjpn1Axn/JolPBxr/AXD3IHAMv6lUMqaT8E9T2cw37ws1IO9RDHHq9/hZ5OtTUhmI8dMPldZNqPOMwdN55vR1lYecrjZE3Re74nRqv/Gr8kPY1Z4mSinUJA1SJ3jqbZUEXTRCe8NGj/cBuWAQ1NryjNnyu1kN2Ucg8cHVWCQs5Oq/u4AReaHpA3MJAw7RSpfd+3SHxix8pWZXSf2EUwj80P7sKUQ91BGtLTfaVWoo8JW3+5hcJd0QM03mUrFxqF8Wzc6TwDOKxct1ZwAHuKHZEFV8dmgIu2Rn5sdl+V+AduLFL3P7G6D3PUk8Glv6K84hNUozYclrHixje3OH6aYC7yFEwlJhuaf86svFfI4czbQWr3LruQ2m5ppB4cqJKpoNzBk1ph/G/M50HLyAbhEmjx9ocFTh0AlbJyrlNF+OmoEFFfEL6wkI3x6ncpSIFN7T4X0Oi2hnnj9UkHl87+CPO5t2VP9WgcDBT5cZ/mB2diUhAH24HWi0CuXJJvWzXGG/qDu+BbjZPSZLrRqf6hlm4Lok5KcOMl4kYa1N74NeocfQ/qdA0GT7h1hDHSErXO+RtKeIDJA3/HuZ1L+Kel5MMYKDvnpzxBdjnVpj85FrVLs6/3EJ4U7/EOwCBN06xMmCBj+S7BdvQjRaI71JjhEMLjLMNBojCN+gpmzs=
