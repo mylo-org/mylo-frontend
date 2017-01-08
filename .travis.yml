@@ -4,6 +4,10 @@ node_js:
 script:
 - if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run build; fi
 - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run release; fi
+cache:
+    bundler: true
+    directories:
+        - node_modules
 notifications:
   slack: mylo-dash:PiBSWnqPLOGdQSt8W0SavSaZ
 deploy:
