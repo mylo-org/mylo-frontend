@@ -18,7 +18,7 @@ class Dash extends React.Component {
             return (<Widget
               key={widget.location}
               location={widget.location}
-              name={widget.name}
+              widget_id={widget.widget_id}
               amount={this.props.widgets.length}
               mini={!this.props.active}
               />);

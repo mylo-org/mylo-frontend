@@ -1,4 +1,5 @@
 import React from "react";
+import Api from '../../../scripts/api';
 require("normalize.css/normalize.css");
 require("styles/Widget.css");
 
@@ -16,6 +17,10 @@ class Widget extends React.Component {
 
   componentDidMount() {
     this.calcSize();
+    Api.getWidget(this.props.widget_id)
+      .then((widget) => {
+        this.setState({ widget: widget })
+      })
   }
 
   handleHover() {
@@ -102,8 +107,8 @@ class Widget extends React.Component {
 
   render() {
     return (
-      <div className={`${this.props.mini ? 'miniW' : 'w'}idget`} onMouseEnter={this.props.mini ? null : this.handleHover} onMouseLeave={this.props.mini ? null : this.handleHoverLeave} data-service={this.props.name} style={{minWidth: this.state.width, minHeight: this.state.height }}>
-      </div>
+      <iframe src={this.state.widget.remote_url} className={`${this.props.mini ? 'miniW' : 'w'}idget`} onMouseEnter={this.props.mini ? null : this.handleHover} onMouseLeave={this.props.mini ? null : this.handleHoverLeave} data-widget={this.props.widget_id} style={{minWidth: this.state.width, minHeight: this.state.height }}>
+      </iframe>
     );
   }
 }
@@ -112,7 +117,7 @@ Widget.displayName = "Widget";
 
 Widget.propTypes = {
   location: React.PropTypes.number,
-  name: React.PropTypes.string,
+  widget_id: React.PropTypes.string,
   amount: React.PropTypes.number
 };
 

@@ -37,4 +37,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default new Auth();

@@ -1,12 +1,10 @@
 import React from 'react';
-import auth from '../../../scripts/auth';
-import api from '../../../scripts/api';
+import Auth from '../../../scripts/auth';
+import API from '../../../scripts/api';
 import Dash from './Dash';
 import Menu from './Menu';
 require("normalize.css/normalize.css");
 require("styles/DashTop.css");
-const API = new api();
-const Auth = new auth();
 const Promise = require("bluebird");
 
 class DashController extends React.Component {

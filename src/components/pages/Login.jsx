@@ -2,9 +2,8 @@
 
 import { Redirect } from 'react-router';
 import React from 'react';
-import auth from '../../scripts/auth';
+import Auth from '../../scripts/auth';
 import config from 'config';
-const Auth = new auth();
 const DUMMY_USER = config["dummy_user"];
 
 class Login extends React.Component {
