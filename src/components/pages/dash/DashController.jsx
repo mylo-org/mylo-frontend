@@ -49,7 +49,7 @@ class DashController extends React.Component {
             this.setState({ redirect: true });
           })
       } else {
-        rej(new Error(`No user?`));
+        return rej(`No user?`);
       }
     })
   }
@@ -70,7 +70,7 @@ class DashController extends React.Component {
     // return dash.location !== this.state.active
     // })
     return (<div className="dashContainer">
-        {this.state.user.dashboards.map((dash,i) => {
+        {this.state.user.dashboards.forEach((dash,i) => {
             return (
               <Dash
               key={dash.location}
@@ -79,7 +79,6 @@ class DashController extends React.Component {
               active={this.state.active === i}
               cb={this.setActive}
               amount={this.state.user.dashboards.length}
-              // isCenter={nonActives[Math.floor(nonActives.length / 2)].location === dash.location}
               />);
           }
         )}
@@ -123,7 +122,7 @@ class DashController extends React.Component {
 
   renderDashParts() {
     return (
-      <div className="menuDash">
+      <div className="dashParts">
       { this.renderMenu() }
        { this.renderDash() }
        </div>)

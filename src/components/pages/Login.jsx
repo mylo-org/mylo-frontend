@@ -3,15 +3,23 @@
 import { Redirect } from 'react-router';
 import React from 'react';
 import Auth from '../../scripts/auth';
+import Api from '../../scripts/api';
 import config from 'config';
-const DUMMY_USER = config["dummy_user"];
+
+const dummyUserCreateData = {
+  widget_id: "test",
+  creds: {
+    username: "foo",
+    password: "bar"
+  }
+}
 
 class Login extends React.Component {
 
   constructor() {
     super();
     this.state = {};
-    this.setUser = this.setUser.bind(this);
+    this.createDummy = this.createDummy.bind(this);
   }
 
   isUser() {
@@ -20,10 +28,11 @@ class Login extends React.Component {
     return ui;
   }
 
-  setUser() {
-    console.log(`Setting dummy user -- ${DUMMY_USER}`);
-    Auth.setCookie(DUMMY_USER);
-    this.setState({ redirect: true });
+  createDummy() {
+    console.log(`Creating user`);
+    Auth.createUser(dummyUserCreateData).then(() => {
+      this.setState({ redirect: true })
+    })
   }
 
   render() {
@@ -33,8 +42,8 @@ class Login extends React.Component {
     }
     return config.env !== "prod" ?
       (<div>
-      <span onClick={this.setUser}>
-      Dummy
+      <span style={{color: 'white'}} onClick={this.createDummy}>
+      Create user
       </span>
     </div>) : null;
   }

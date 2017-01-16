@@ -12,17 +12,27 @@ class API {
     }
     return request(opts);
   }
+  _post(url, data) {
+    const opts = {
+      method: 'POST',
+      url: `${config.API}${url}`,
+      json: true,
+      body: typeof data === 'object' ? data : {}
+    }
+    return request(opts);
+  }
   getUser(user_id) {
     try {
-      return this._get(`/user/${user_id}`).then((data) => {
-        return JSON.parse(data);
-      });
+      return this._get(`/user/${user_id}`);
     } catch (err) {
       return Promise.reject(err);
     }
   }
   getWidget(widget_id) {
     return this._get(`/widget/${widget_id}`)
+  }
+  createUser(data) {
+    return this._post('/user/new', data);
   }
 }
 

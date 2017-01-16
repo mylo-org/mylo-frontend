@@ -9,6 +9,7 @@ class Dash extends React.Component {
       page: "dash"
     };
     this.setActive = this.setActive.bind(this);
+    console.log(`rendering dash?`);
   }
 
   renderDash() {
@@ -72,6 +73,7 @@ class Dash extends React.Component {
   }
 
   render() {
+    console.log(`Rendering dash #${this.props.location}`);
     return (
       <div className={this.props.active ? "dashBg" : 'miniDashCont'} style={this.getStyles()} onClick={this.props.active ? null : this.setActive}>
       {this.state.page === "dash" ?

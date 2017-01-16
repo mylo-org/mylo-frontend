@@ -13,6 +13,7 @@ class Widget extends React.Component {
     this.setSize = this.setSize.bind(this);
     this.calcSize = this.calcSize.bind(this);
     this.handleHoverLeave = this.handleHoverLeave.bind(this);
+    this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +22,13 @@ class Widget extends React.Component {
       .then((widget) => {
         this.setState({ widget: widget })
       })
+  }
+
+  dispatchEvent(data) {
+    const iframe = document.getElementById(this.props.widget_id + this.props.location);
+    if (iframe) {
+      iframe.postMessage(JSON.stringify(data));
+    }
   }
 
   handleHover() {
@@ -107,7 +115,14 @@ class Widget extends React.Component {
 
   render() {
     return (
-      <iframe src={this.state.widget.remote_url} className={`${this.props.mini ? 'miniW' : 'w'}idget`} onMouseEnter={this.props.mini ? null : this.handleHover} onMouseLeave={this.props.mini ? null : this.handleHoverLeave} data-widget={this.props.widget_id} style={{minWidth: this.state.width, minHeight: this.state.height }}>
+      <iframe
+      src={this.state.widget.remote_url}
+      className={`${this.props.mini ? 'miniW' : 'w'}idget`}
+      onMouseEnter={this.props.mini ? null : this.handleHover}
+      onMouseLeave={this.props.mini ? null : this.handleHoverLeave}
+      data-widget={this.props.widget_id}
+      id={this.this.props.widget_id+this.props.location}
+      style={{minWidth: this.state.width, minHeight: this.state.height }}>
       </iframe>
     );
   }

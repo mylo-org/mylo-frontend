@@ -1,5 +1,5 @@
-import api from './api';
-const API = new api();
+import API from './api';
+const Promise = require("bluebird");
 const Cookie = require('js-cookie');
 
 class Auth {
@@ -7,33 +7,44 @@ class Auth {
     return Cookie.get('_ui');
   }
   setCookie(ui) {
-    if (this.getUserId()) {
-      return true;
-    }
-    if (ui) {
-      API.getUser(ui)
-        .then((user) => {
-          if (user.user_id === ui) {
-            Cookie.set("_ui", ui);
-          } else {
-            console.warn(`Somehow not matching user_id from DB and local? API: ${user.user_id}; Local: ${ui}`);
-            return false;
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          return false;
-        })
-    } else {
-      console.warn(`Attempted to set user without passing id`);
-      return false;
-    }
+    return new Promise((res, rej) => {
+      const cookied_ui = this.getUserId();
+      if (cookied_ui) {
+        return res(cookied_ui);
+      }
+      if (ui) {
+        Cookie.set("_ui", ui);
+        return res();
+      } else {
+        return rej(`Attempted to set user without passing id`);
+      }
+    })
   }
   revokeCookie() {
     if (Cookie.get("_ui")) {
       Cookie.remove("_ui");
     }
     return true;
+  }
+
+  setToken(token) {
+    return new Promise((res, rej) => {
+      if (token.split(".").length === 3) {
+        Cookie.set('_ut', token);
+        return res();
+      } else {
+        return rej(`Invalid user token -- ${token}`);
+      }
+    })
+  }
+
+  createUser(data) {
+    return API.createUser(data).then((user) => {
+      return this.setCookie(user._id)
+        .then(() => {
+          return this.setToken(user._user_token);
+        })
+    })
   }
 }
 
