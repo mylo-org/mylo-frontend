@@ -7,7 +7,8 @@ const request = require('request-promise');
 
 class API {
   getHeaders() {
-    return { 'X-User-Token': Auth.getToken() }
+    const _utoken = Auth.getToken()
+    return (_utoken ? { 'X-User-Token': _utoken } : {});
   }
 
   _get(url) {
