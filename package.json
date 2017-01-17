@@ -59,13 +59,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theonlyjohnny/drew-debate.git"
+    "url": "git+https://github.com/theonlyjohnny/mylo-frontend.git"
   },
-  "author": "",
+  "author": "Johnny Dallas (theonlyjohnny)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/theonlyjohnny/drew-debate/issues"
+    "url": "https://github.com/theonlyjohnny/mylo-frontend/issues"
   },
-  "homepage": "https://github.com/theonlyjohnny/drew-debate#readme",
+  "homepage": "https://github.com/theonlyjohnny/mylo-frontend#readme",
   "description": ""
 }

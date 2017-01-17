@@ -27,6 +27,10 @@ class Auth {
     return true;
   }
 
+  getToken() {
+    return Cookie.get("_ut") || null;
+  }
+
   setToken(token) {
     return new Promise((res, rej) => {
       if (token.split(".").length === 3) {
